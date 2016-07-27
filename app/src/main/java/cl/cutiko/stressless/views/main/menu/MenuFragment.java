@@ -2,6 +2,7 @@ package cl.cutiko.stressless.views.main.menu;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import java.util.List;
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.data.Todos;
 import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.views.archive.ArchiveActivity;
 import cl.cutiko.stressless.views.main.SearchListener;
 
 /**
@@ -35,6 +37,7 @@ public class MenuFragment extends Fragment {
 
     private static final int SEARCH_EXPANDED = 111;
     private static final int SEARCH_COLLAPSED = 000;
+    private static final int ARCHIVE_INTENT = 222;
 
     private SearchListener listener;
     private List<String> names = new ArrayList<>();
@@ -74,7 +77,8 @@ public class MenuFragment extends Fragment {
         archive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), ArchiveActivity.class);
+                startActivityForResult(intent, ARCHIVE_INTENT);
             }
         });
 
