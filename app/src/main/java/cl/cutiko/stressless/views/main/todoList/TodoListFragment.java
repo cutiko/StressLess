@@ -1,4 +1,4 @@
-package cl.cutiko.stressless.views.main;
+package cl.cutiko.stressless.views.main.todoList;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,14 +11,14 @@ import cl.cutiko.stressless.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class TodoListFragment extends Fragment {
 
-    public MainActivityFragment() {
+    public TodoListFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_todo_list, container, false);
     }
 }
