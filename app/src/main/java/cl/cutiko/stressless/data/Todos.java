@@ -19,4 +19,15 @@ public class Todos {
         return todos;
     }
 
+    public List<String> pendingNames() {
+        List<String> list = new ArrayList<>();
+        List<Todo> check = pendings();
+        if (check != null && check.size() > 0) {
+            for (Todo todo : check) {
+                list.add(todo.getName());
+            }
+        }
+        return list;
+    }
+
 }
