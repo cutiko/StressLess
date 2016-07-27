@@ -19,10 +19,12 @@ import android.widget.TextView;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.models.ToDo;
+import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
 public class MainActivity extends AppCompatActivity implements CreateToDoCallback {
 
     private Dialog dialog;
+    private TodoListFragment listFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        listFragment = (TodoListFragment) getSupportFragmentManager().findFragmentById(R.id.todoListFragment);
         setFab();
     }
 
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
     @Override
     public void result(ToDo toDo) {
         if (toDo != null) {
-
+            listFragment.add(toDo);
         }
         dialog.dismiss();
     }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.adapters.TodoAdapter;
 import cl.cutiko.stressless.data.Todos;
+import cl.cutiko.stressless.models.ToDo;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -44,5 +45,9 @@ public class TodoListFragment extends Fragment implements ClickListener {
     @Override
     public void itemClicked(Long id, int position) {
 
+    }
+
+    public void add(ToDo toDo) {
+        adapter.add(toDo);
     }
 }
