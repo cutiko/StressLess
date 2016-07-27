@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.data.Todos;
+import cl.cutiko.stressless.views.main.SearchListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,10 +36,17 @@ public class SearchFragment extends Fragment {
     private static final int SEARCH_EXPANDED = 111;
     private static final int SEARCH_COLLAPSED = 000;
 
+    private SearchListener listener;
+
     public SearchFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (SearchListener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,6 +105,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String name = autoTv.getText().toString();
+                listener.searchBy(name);
                 hideKeyboard();
             }
         });
@@ -107,6 +116,7 @@ public class SearchFragment extends Fragment {
                 if (actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String name = autoTv.getText().toString();
                     if (name != null && !name.isEmpty() && !name.equals("") && name.trim().length() > 0) {
+                        listener.searchBy(name);
                         hideKeyboard();
                     }
                     return true;

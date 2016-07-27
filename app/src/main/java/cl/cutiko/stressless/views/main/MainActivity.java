@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -20,7 +21,7 @@ import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.models.Todo;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
-public class MainActivity extends AppCompatActivity implements CreateToDoCallback {
+public class MainActivity extends AppCompatActivity implements CreateToDoCallback, SearchListener {
 
     private Dialog dialog;
     private TodoListFragment listFragment;
@@ -88,5 +89,10 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
 
         }
 
+    }
+
+    @Override
+    public void searchBy(String name) {
+        Log.d("name", name);
     }
 }
