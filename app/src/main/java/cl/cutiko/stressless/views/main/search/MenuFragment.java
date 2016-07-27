@@ -1,13 +1,9 @@
 package cl.cutiko.stressless.views.main.search;
 
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.ImageFormat;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Display;
@@ -15,7 +11,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -23,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +29,7 @@ import cl.cutiko.stressless.views.main.SearchListener;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public class MenuFragment extends Fragment {
 
     private static final int SEARCH_EXPANDED = 111;
     private static final int SEARCH_COLLAPSED = 000;
@@ -44,7 +38,7 @@ public class SearchFragment extends Fragment {
     private List<String> names = new ArrayList<>();
     private ArrayAdapter<String> adapter;
 
-    public SearchFragment() {
+    public MenuFragment() {
         // Required empty public constructor
     }
 
@@ -57,7 +51,7 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View main = inflater.inflate(R.layout.fragment_search, container, false);
+        View main = inflater.inflate(R.layout.fragment_menu, container, false);
 
         AutoCompleteTextView autoComplete = (AutoCompleteTextView) main.findViewById(R.id.searchBar);
 

@@ -22,10 +22,10 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" >
             <fragment
                 android:id="@+id/searchFragment"
-                android:name="cl.cutiko.stressless.views.main.search.SearchFragment"
+                android:name="cl.cutiko.stressless.views.main.search.MenuFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout="@layout/fragment_search" />
+                tools:layout="@layout/fragment_menu" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

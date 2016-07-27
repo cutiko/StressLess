@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -19,14 +18,14 @@ import android.widget.TextView;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.models.Todo;
-import cl.cutiko.stressless.views.main.search.SearchFragment;
+import cl.cutiko.stressless.views.main.search.MenuFragment;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
 public class MainActivity extends AppCompatActivity implements CreateToDoCallback, SearchListener {
 
     private Dialog dialog;
     private TodoListFragment listFragment;
-    private SearchFragment searchFragment;
+    private MenuFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listFragment = (TodoListFragment) getSupportFragmentManager().findFragmentById(R.id.todoListFragment);
-        searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.searchFragment);
+        searchFragment = (MenuFragment) getSupportFragmentManager().findFragmentById(R.id.searchFragment);
         setFab();
     }
 
