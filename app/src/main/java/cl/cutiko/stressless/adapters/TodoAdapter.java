@@ -60,7 +60,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.itemClicked(toDo.getId());
+                clickListener.itemClicked(toDo.getId(), position);
             }
         });
     }
@@ -88,11 +88,13 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     }
 
     public void add(ToDo toDo) {
-
+        toDos.add(0, toDo);
+        notifyDataSetChanged();
     }
 
-    public void remove(ToDo toDo) {
-
+    public void delete(int position) {
+        toDos.remove(position);
+        notifyDataSetChanged();
     }
 
 }

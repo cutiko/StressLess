@@ -5,5 +5,5 @@ package cl.cutiko.stressless.views.main.todoList;
  */
 public interface ClickListener {
 
-    void itemClicked(Long id);
+    void itemClicked(Long id, int position);
 }
