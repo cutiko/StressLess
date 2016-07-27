@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import cl.cutiko.stressless.R;
+import cl.cutiko.stressless.adapters.ArchiveAdapter;
+import cl.cutiko.stressless.data.Todos;
 
 public class ArchiveActivity extends AppCompatActivity implements ArchiveListener{
 
@@ -40,7 +42,8 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
 
         recyclerView.setLayoutManager(layoutManager);
 
-
+        ArchiveAdapter adapter = new ArchiveAdapter(new Todos().archived(), this);
+        recyclerView.setAdapter(adapter);
 
     }
 

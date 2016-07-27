@@ -14,6 +14,7 @@ import java.util.List;
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.data.Todos;
 import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.views.archive.ArchiveListener;
 import cl.cutiko.stressless.views.main.todoList.ClickListener;
 
 /**
@@ -22,9 +23,9 @@ import cl.cutiko.stressless.views.main.todoList.ClickListener;
 public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHolder> {
 
     private List<Todo> todos;
-    private ClickListener clickListener;
+    private ArchiveListener clickListener;
 
-    public ArchiveAdapter(List<Todo> todos, ClickListener clickListener) {
+    public ArchiveAdapter(List<Todo> todos, ArchiveListener clickListener) {
         this.todos = todos;
         this.clickListener = clickListener;
     }
@@ -41,12 +42,13 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
         final Todo todo = todos.get(position);
 
         CheckBox checkBox = holder.checkBox;
-        checkBox.setChecked(todo.isDone());
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    isDone(position);
+                    clickListener.selectedItem(1);
+                } else {
+                    clickListener.selectedItem(-1);
                 }
             }
         });
@@ -54,12 +56,6 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
 
         TextView name = holder.name;
         name.setText(todo.getName());
-        name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickListener.itemClicked(todo.getId(), position);
-            }
-        });
     }
 
     @Override
@@ -77,38 +73,6 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
             checkBox = (CheckBox) itemView.findViewById(R.id.todoCb);
             name = (TextView) itemView.findViewById(R.id.todoName);
         }
-    }
-
-    private void isDone(final int position){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Todo todo = todos.get(position);
-                todo.setDone(true);
-                todo.save();
-                todos.remove(position);
-                notifyDataSetChanged();
-            }
-        }, 1200);
-    }
-
-    public void add(Todo todo) {
-        todos.add(0, todo);
-        notifyDataSetChanged();
-    }
-
-    public void delete(int position) {
-        todos.remove(position);
-        notifyDataSetChanged();
-    }
-
-    public void byName(String name) {
-        todos.clear();
-        List<Todo> byName = new Todos().byName(name);
-        if (byName != null && byName.size() > 0) {
-            todos.addAll(byName);
-        }
-        notifyDataSetChanged();
     }
 
 }

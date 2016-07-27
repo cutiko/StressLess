@@ -40,4 +40,13 @@ public class Todos {
         return todos;
     }
 
+    public List<Todo> archived() {
+        List<Todo> todos = new ArrayList<>();
+        List<Todo> check = Todo.find(Todo.class, "done = 1 OR archived = 1");
+        if (check != null && check.size() > 0) {
+            todos = check;
+        }
+        return todos;
+    }
+
 }
