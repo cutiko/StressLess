@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.ImageFormat;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -129,7 +130,7 @@ public class SearchFragment extends Fragment {
     private void hideKeyboard(){
         try {
             InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+            inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
         } catch (Exception e) {
 
         }
