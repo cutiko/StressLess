@@ -3,6 +3,8 @@ package cl.cutiko.stressless.views.archive;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -26,9 +28,19 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
 
         }
 
+        setAdapter();
     }
 
     private void setAdapter(){
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.archiveList);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+
 
     }
 
