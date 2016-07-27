@@ -1,6 +1,8 @@
 package cl.cutiko.stressless.views.main.search;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.ImageFormat;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 
@@ -45,6 +48,7 @@ public class SearchFragment extends Fragment {
         final ImageView expander = (ImageView) main.findViewById(R.id.searchIv);
         expander.setTag(SEARCH_COLLAPSED);
 
+        final InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         expander.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,11 +57,21 @@ public class SearchFragment extends Fragment {
                     autoComplete.requestFocus();
                     expander.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.ic_close_white_24dp));
                     expander.setTag(SEARCH_EXPANDED);
+                    try {
+                        inputMethodManager.showSoftInput(autoComplete, InputMethodManager.SHOW_FORCED);
+                    } catch (NullPointerException e) {
+
+                    }
                 } else {
                     autoComplete.animate().translationX(width).setDuration(400).start();
                     expander.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.ic_search_white_24dp));
                     expander.setTag(SEARCH_COLLAPSED);
                     autoComplete.setText("");
+                    try {
+                        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+                    } catch (Exception e) {
+
+                    }
                 }
             }
         });
