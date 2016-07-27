@@ -24,6 +24,7 @@ import java.util.List;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.data.Todos;
+import cl.cutiko.stressless.models.Todo;
 import cl.cutiko.stressless.views.main.SearchListener;
 
 /**
@@ -67,6 +68,8 @@ public class MenuFragment extends Fragment {
 
         setSearchUi(autoComplete, expander, width);
         setCompletion(autoComplete);
+
+
 
         return main;
     }
@@ -131,6 +134,10 @@ public class MenuFragment extends Fragment {
     public void add(String name) {
         names.add(name);
         adapter.notifyDataSetChanged();
+    }
+
+    public void remove(Todo todo) {
+
     }
 
     private void hideKeyboard(){
