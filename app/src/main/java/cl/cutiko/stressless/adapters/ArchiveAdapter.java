@@ -83,6 +83,8 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
         }
     }
 
-
+    public List<Long> getIds() {
+        return ids;
+    }
 
 }
