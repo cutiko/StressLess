@@ -12,7 +12,10 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_primary_underlined_white"
         android:drawableStart="@mipmap/ic_search_white_24dp"
-        android:textColor="@color/colorWhite" />
+        android:textColor="@color/colorWhite"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:imeOptions="actionSearch"/>
 
     <ImageView
         android:id="@+id/searchIv"

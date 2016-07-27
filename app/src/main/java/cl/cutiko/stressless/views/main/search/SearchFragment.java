@@ -10,15 +10,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cl.cutiko.stressless.R;
@@ -61,7 +64,6 @@ public class SearchFragment extends Fragment {
     }
 
     private void setSearchUi(final AutoCompleteTextView autoComplete, final ImageView expander, final int width){
-        final InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         expander.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +73,7 @@ public class SearchFragment extends Fragment {
                     expander.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.ic_close_white_24dp));
                     expander.setTag(SEARCH_EXPANDED);
                     try {
+                        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         inputMethodManager.showSoftInput(autoComplete, InputMethodManager.SHOW_FORCED);
                     } catch (NullPointerException e) {
 
@@ -80,26 +83,46 @@ public class SearchFragment extends Fragment {
                     expander.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.ic_search_white_24dp));
                     expander.setTag(SEARCH_COLLAPSED);
                     autoComplete.setText("");
-                    try {
-                        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
-                    } catch (Exception e) {
-
-                    }
+                    hideKeyboard();
                 }
             }
         });
     }
 
-    private void setCompletion(AutoCompleteTextView autoTv){
+    private void setCompletion(final AutoCompleteTextView autoTv){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new Todos().pendingNames());
         autoTv.setAdapter(adapter);
 
         autoTv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                String name = autoTv.getText().toString();
+                hideKeyboard();
             }
         });
+
+        autoTv.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String name = autoTv.getText().toString();
+                    if (name != null && !name.isEmpty() && !name.equals("") && name.trim().length() > 0) {
+                        hideKeyboard();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void hideKeyboard(){
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+        } catch (Exception e) {
+
+        }
     }
 
 
