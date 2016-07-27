@@ -119,6 +119,7 @@ public class SearchFragment extends Fragment {
                     if (name != null && !name.isEmpty() && !name.equals("") && name.trim().length() > 0) {
                         listener.searchBy(name);
                         hideKeyboard();
+                        autoTv.dismissDropDown();
                     }
                     return true;
                 }
