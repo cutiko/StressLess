@@ -82,6 +82,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                ToDo toDo = toDos.get(position);
+                toDo.setDone(true);
+                toDo.save();
                 toDos.remove(position);
                 notifyDataSetChanged();
             }
