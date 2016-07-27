@@ -1,7 +1,7 @@
 package cl.cutiko.stressless.views.details;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import cl.cutiko.stressless.R;
 

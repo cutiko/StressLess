@@ -1,6 +1,5 @@
 package cl.cutiko.stressless.adapters;
 
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +11,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import cl.cutiko.stressless.R;
-import cl.cutiko.stressless.data.Todos;
 import cl.cutiko.stressless.models.Todo;
 import cl.cutiko.stressless.views.archive.ArchiveListener;
-import cl.cutiko.stressless.views.main.todoList.ClickListener;
 
 /**
  * Created by cutiko on 27-07-16.
