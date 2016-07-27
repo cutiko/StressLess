@@ -23,7 +23,12 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         } catch (NullPointerException e) {
+
         }
+
+    }
+
+    private void setAdapter(){
 
     }
 
