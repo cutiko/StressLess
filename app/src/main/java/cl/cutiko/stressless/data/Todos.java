@@ -12,7 +12,7 @@ public class Todos {
 
     public List<Todo> pendings() {
         List<Todo> todos = new ArrayList<>();
-        List<Todo> check = Todo.find(Todo.class, "done = 0");
+        List<Todo> check = Todo.find(Todo.class, "done = 0 AND archived = 0");
         if (check != null && check.size() > 0) {
             todos = check;
         }
