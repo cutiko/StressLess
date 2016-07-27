@@ -1,5 +1,6 @@
 package cl.cutiko.stressless.views.archive;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +11,15 @@ import android.view.MenuItem;
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.adapters.ArchiveAdapter;
 import cl.cutiko.stressless.data.Todos;
+import cl.cutiko.stressless.views.main.menu.MenuFragment;
 
 public class ArchiveActivity extends AppCompatActivity implements ArchiveListener{
 
     private ActionBar actionBar;
     private int counter = 0;
+    private ArchiveAdapter adapter;
+
+    private static final String UNARCHIVE = "UNARCHIVE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,7 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
 
         recyclerView.setLayoutManager(layoutManager);
 
-        ArchiveAdapter adapter = new ArchiveAdapter(new Todos().archived(), this);
+        adapter = new ArchiveAdapter(new Todos().archived(), this);
         recyclerView.setAdapter(adapter);
 
     }
@@ -62,7 +67,9 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
 
     @Override
     public void onBackPressed() {
-
-        super.onBackPressed();
+        Intent intent = new Intent();
+        intent.putExtra(UNARCHIVE, adapter.getIds());
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

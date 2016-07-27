@@ -83,8 +83,8 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
         }
     }
 
-    public List<Long> getIds() {
-        return ids;
+    public Long[] getIds() {
+       return ids.toArray(new Long[ids.size()]);
     }
 
 }
