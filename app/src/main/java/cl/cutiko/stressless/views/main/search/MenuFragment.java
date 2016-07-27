@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -69,7 +70,13 @@ public class MenuFragment extends Fragment {
         setSearchUi(autoComplete, expander, width);
         setCompletion(autoComplete);
 
+        ImageButton archive = (ImageButton) main.findViewById(R.id.archivesBtn);
+        archive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
         return main;
     }
