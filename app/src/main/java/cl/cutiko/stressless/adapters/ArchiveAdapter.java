@@ -8,7 +8,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.models.Todo;
@@ -21,6 +24,9 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
 
     private List<Todo> todos;
     private ArchiveListener clickListener;
+
+    private Map<Long, Integer> map = new HashMap<>();
+    private List<Long> ids = new ArrayList<>();
 
     public ArchiveAdapter(List<Todo> todos, ArchiveListener clickListener) {
         this.todos = todos;
@@ -37,6 +43,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Todo todo = todos.get(position);
+        final long id = todo.getId();
 
         CheckBox checkBox = holder.checkBox;
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -44,8 +51,12 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     clickListener.selectedItem(1);
+                    ids.add(id);
+                    map.put(id, position);
                 } else {
                     clickListener.selectedItem(-1);
+                    int removePosition = map.get(id);
+                    ids.remove(removePosition);
                 }
             }
         });
@@ -71,5 +82,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
             name = (TextView) itemView.findViewById(R.id.todoName);
         }
     }
+
+
 
 }
