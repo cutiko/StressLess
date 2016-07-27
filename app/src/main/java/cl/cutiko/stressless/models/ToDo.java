@@ -13,9 +13,9 @@ public class ToDo extends SugarRecord {
     public ToDo() {
     }
 
-    public ToDo(String name, boolean done) {
+    public ToDo(String name) {
         this.name = name;
-        this.done = done;
+        this.done = false;
     }
 
     public String getName() {
