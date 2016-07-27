@@ -1,10 +1,12 @@
 package cl.cutiko.stressless.views.main;
 
+import cl.cutiko.stressless.models.ToDo;
+
 /**
  * Created by cutiko on 27-07-16.
  */
 public interface CreateToDoCallback {
 
-    void result();
+    void result(ToDo toDo);
 
 }

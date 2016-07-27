@@ -74,7 +74,10 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
     }
 
     @Override
-    public void result() {
+    public void result(ToDo toDo) {
+        if (toDo != null) {
+
+        }
         dialog.dismiss();
     }
 }

@@ -16,9 +16,11 @@ public class CreateToDo {
     }
 
     public void validation(String name) {
+        ToDo toDo = null;
         if (name != null && !name.isEmpty() && !name.equals("") && name.trim().length() > 0) {
-            new ToDo(name).save();
+            toDo = new ToDo(name);
+            toDo.save();
         }
-        callback.result();
+        callback.result(toDo);
     }
 }
