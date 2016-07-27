@@ -1,24 +1,25 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context="cl.cutiko.stressless.views.main.search.SearchFragment">
+
+    <AutoCompleteTextView
+        android:id="@+id/searchBar"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_primary_underlined_white"
+        android:drawableStart="@mipmap/ic_search_white_24dp"
+        android:textColor="@color/colorWhite" />
 
     <ImageView
         android:id="@+id/searchIv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="16dp"
+        android:paddingEnd="16dp"
         android:background="@color/colorPrimary"
         android:src="@mipmap/ic_search_white_24dp" />
 
-    <AutoCompleteTextView
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent"
-        android:drawableStart="@mipmap/ic_search_white_24dp" />
-
-</RelativeLayout>
+</LinearLayout>

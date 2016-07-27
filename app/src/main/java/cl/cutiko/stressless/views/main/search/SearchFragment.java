@@ -1,9 +1,11 @@
 package cl.cutiko.stressless.views.main.search;
 
 
+import android.graphics.ImageFormat;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,8 @@ import cl.cutiko.stressless.R;
  */
 public class SearchFragment extends Fragment {
 
+    private static final int SEARCH_EXPANDED = 111;
+    private static final int SEARCH_COLLAPSED = 000;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -29,27 +33,34 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         View main = inflater.inflate(R.layout.fragment_search, container, false);
 
-        ImageView expander = (ImageView) main.findViewById(R.id.searchIv);
-
         final AutoCompleteTextView autoComplete = (AutoCompleteTextView) main.findViewById(R.id.searchBar);
-        autoComplete.setVisibility(View.GONE);
 
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         final int width = size.x;
-        autoComplete.animate().translationX(width-100).start();
+
+        autoComplete.animate().translationX(width).start();
+
+        final ImageView expander = (ImageView) main.findViewById(R.id.searchIv);
+        expander.setTag(SEARCH_COLLAPSED);
 
         expander.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (autoComplete.getVisibility() == View.GONE) {
-                    autoComplete.setVisibility(View.VISIBLE);
-                    autoComplete.animate().translationX(-width).setDuration(400).start();
+                if (SEARCH_COLLAPSED == expander.getTag()) {
+                    autoComplete.animate().translationX(0).setDuration(400).start();
+                    autoComplete.requestFocus();
+                    expander.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.ic_close_white_24dp));
+                    expander.setTag(SEARCH_EXPANDED);
+                } else {
+                    autoComplete.animate().translationX(width).setDuration(400).start();
+                    expander.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.ic_search_white_24dp));
+                    expander.setTag(SEARCH_COLLAPSED);
+                    autoComplete.setText("");
                 }
             }
         });
-
 
         return main;
     }
