@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -38,7 +39,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         ToDo toDo = toDos.get(position);
         CheckBox checkBox = holder.checkBox;
         checkBox.setChecked(toDo.isDone());
-        checkBox.setText(toDo.getName());
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -63,10 +63,12 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         CheckBox checkBox;
+        TextView name;
 
         public ViewHolder(View itemView) {
             super(itemView);
             checkBox = (CheckBox) itemView.findViewById(R.id.todoCb);
+            name = (TextView) itemView.findViewById(R.id.todoName);
         }
     }
 
