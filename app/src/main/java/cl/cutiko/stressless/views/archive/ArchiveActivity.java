@@ -18,9 +18,13 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
         actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+        try {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+        } catch (NullPointerException e) {
+        }
+
     }
 
     @Override
