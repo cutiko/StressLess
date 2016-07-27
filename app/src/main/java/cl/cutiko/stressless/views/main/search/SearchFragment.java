@@ -25,6 +25,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.data.Todos;
 import cl.cutiko.stressless.views.main.SearchListener;
@@ -38,6 +41,8 @@ public class SearchFragment extends Fragment {
     private static final int SEARCH_COLLAPSED = 000;
 
     private SearchListener listener;
+    private List<String> names = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -99,7 +104,8 @@ public class SearchFragment extends Fragment {
     }
 
     private void setCompletion(final AutoCompleteTextView autoTv){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, new Todos().pendingNames());
+        names = new Todos().pendingNames();
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, names);
         autoTv.setAdapter(adapter);
 
         autoTv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -126,6 +132,11 @@ public class SearchFragment extends Fragment {
                 return false;
             }
         });
+    }
+
+    public void add(String name) {
+        names.add(name);
+        adapter.notifyDataSetChanged();
     }
 
     private void hideKeyboard(){
