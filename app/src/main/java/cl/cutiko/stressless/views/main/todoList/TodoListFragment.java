@@ -50,4 +50,8 @@ public class TodoListFragment extends Fragment implements ClickListener {
     public void add(Todo todo) {
         adapter.add(todo);
     }
+
+    public void search(String name) {
+        adapter.byName(name);
+    }
 }

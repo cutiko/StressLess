@@ -30,4 +30,13 @@ public class Todos {
         return list;
     }
 
+    public List<Todo> byName(String name) {
+        List<Todo> todos = new ArrayList<>();
+        List<Todo> check = Todo.find(Todo.class, "name LIKE ?", name);
+        if (check != null && check.size() > 0) {
+            todos = check;
+        }
+        return todos;
+    }
+
 }

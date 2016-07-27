@@ -93,6 +93,6 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
 
     @Override
     public void searchBy(String name) {
-        Log.d("name", name);
+        listFragment.search(name);
     }
 }

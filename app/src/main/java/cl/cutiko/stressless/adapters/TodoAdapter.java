@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cl.cutiko.stressless.R;
+import cl.cutiko.stressless.data.Todos;
 import cl.cutiko.stressless.models.Todo;
 import cl.cutiko.stressless.views.main.todoList.ClickListener;
 
@@ -98,6 +99,15 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     public void delete(int position) {
         todos.remove(position);
+        notifyDataSetChanged();
+    }
+
+    public void byName(String name) {
+        todos.clear();
+        List<Todo> byName = new Todos().byName(name);
+        if (byName != null && byName.size() > 0) {
+            todos.addAll(byName);
+        }
         notifyDataSetChanged();
     }
 
