@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 
 import cl.cutiko.stressless.R;
@@ -67,9 +68,14 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
 
     @Override
     public void onBackPressed() {
+        Long[] ids = adapter.getIds();
         Intent intent = new Intent();
-        intent.putExtra(UNARCHIVE, adapter.getIds());
-        setResult(RESULT_OK, intent);
+        if (ids != null && ids.length > 0) {
+            intent.putExtra(UNARCHIVE, adapter.getIds());
+            setResult(RESULT_OK, intent);
+        } else {
+            setResult(RESULT_CANCELED);
+        }
         finish();
     }
 }
