@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import cl.cutiko.stressless.R;
 
@@ -25,7 +26,7 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            super.onBackPressed();
+            onBackPressed();
         }
         return true;
     }
@@ -34,5 +35,11 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
     public void selectedItem(int counter) {
         this.counter += counter;
         actionBar.setTitle(getString(R.string.title_archive_selection, this.counter));
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
     }
 }
