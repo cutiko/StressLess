@@ -32,7 +32,8 @@ public class Todos {
 
     public List<Todo> byName(String name) {
         List<Todo> todos = new ArrayList<>();
-        List<Todo> check = Todo.find(Todo.class, "name LIKE ?", name);
+        String query = "name LIKE " + "'%"+name+"%'" + " AND done = 0 AND archived = 0";
+        List<Todo> check = Todo.find(Todo.class, query);
         if (check != null && check.size() > 0) {
             todos = check;
         }
