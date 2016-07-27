@@ -1,6 +1,7 @@
 package cl.cutiko.stressless.views.main;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
         setFab();
     }
 
-    private void setFab(){
+    private void setFab() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_create_todo);
@@ -79,5 +81,12 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
             listFragment.add(todo);
         }
         dialog.dismiss();
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+        } catch (Exception e) {
+
+        }
+
     }
 }
