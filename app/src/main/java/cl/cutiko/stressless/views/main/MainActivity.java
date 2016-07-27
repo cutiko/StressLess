@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.models.Todo;
-import cl.cutiko.stressless.views.main.search.MenuFragment;
+import cl.cutiko.stressless.views.main.menu.MenuFragment;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
 public class MainActivity extends AppCompatActivity implements CreateToDoCallback, SearchListener {

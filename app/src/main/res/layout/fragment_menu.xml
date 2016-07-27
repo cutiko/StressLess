@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".views.main.search.MenuFragment">
+    tools:context=".views.main.menu.MenuFragment">
 
     <AutoCompleteTextView
         android:id="@+id/searchBar"

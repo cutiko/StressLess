@@ -1,4 +1,4 @@
-package cl.cutiko.stressless.views.main.search;
+package cl.cutiko.stressless.views.main.menu;
 
 
 import android.content.Context;
