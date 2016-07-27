@@ -3,6 +3,7 @@ package cl.cutiko.stressless.views.archive;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import cl.cutiko.stressless.R;
 
@@ -16,6 +17,17 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
         actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            super.onBackPressed();
+        }
+        return true;
     }
 
     @Override
