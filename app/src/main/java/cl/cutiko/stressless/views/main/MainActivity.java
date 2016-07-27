@@ -2,10 +2,7 @@ package cl.cutiko.stressless.views.main;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -18,7 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import cl.cutiko.stressless.R;
-import cl.cutiko.stressless.models.ToDo;
+import cl.cutiko.stressless.models.Todo;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
 public class MainActivity extends AppCompatActivity implements CreateToDoCallback {
@@ -77,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
     }
 
     @Override
-    public void result(ToDo toDo) {
-        if (toDo != null) {
-            listFragment.add(toDo);
+    public void result(Todo todo) {
+        if (todo != null) {
+            listFragment.add(todo);
         }
         dialog.dismiss();
     }

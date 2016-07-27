@@ -1,8 +1,6 @@
 package cl.cutiko.stressless.views.main;
 
-import android.widget.EditText;
-
-import cl.cutiko.stressless.models.ToDo;
+import cl.cutiko.stressless.models.Todo;
 
 /**
  * Created by cutiko on 27-07-16.
@@ -16,11 +14,11 @@ public class CreateToDo {
     }
 
     public void validation(String name) {
-        ToDo toDo = null;
+        Todo todo = null;
         if (name != null && !name.isEmpty() && !name.equals("") && name.trim().length() > 0) {
-            toDo = new ToDo(name);
-            toDo.save();
+            todo = new Todo(name);
+            todo.save();
         }
-        callback.result(toDo);
+        callback.result(todo);
     }
 }

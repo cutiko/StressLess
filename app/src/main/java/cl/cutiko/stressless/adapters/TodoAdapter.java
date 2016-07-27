@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cl.cutiko.stressless.R;
-import cl.cutiko.stressless.models.ToDo;
+import cl.cutiko.stressless.models.Todo;
 import cl.cutiko.stressless.views.main.todoList.ClickListener;
 
 /**
@@ -20,11 +20,11 @@ import cl.cutiko.stressless.views.main.todoList.ClickListener;
  */
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
-    private List<ToDo> toDos;
+    private List<Todo> todos;
     private ClickListener clickListener;
 
-    public TodoAdapter(List<ToDo> toDos, ClickListener clickListener) {
-        this.toDos = toDos;
+    public TodoAdapter(List<Todo> todos, ClickListener clickListener) {
+        this.todos = todos;
         this.clickListener = clickListener;
     }
 
@@ -37,10 +37,10 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final ToDo toDo = toDos.get(position);
+        final Todo todo = todos.get(position);
 
         CheckBox checkBox = holder.checkBox;
-        checkBox.setChecked(toDo.isDone());
+        checkBox.setChecked(todo.isDone());
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -52,18 +52,18 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
 
         TextView name = holder.name;
-        name.setText(toDo.getName());
+        name.setText(todo.getName());
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.itemClicked(toDo.getId(), position);
+                clickListener.itemClicked(todo.getId(), position);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return toDos.size();
+        return todos.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -82,22 +82,22 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ToDo toDo = toDos.get(position);
-                toDo.setDone(true);
-                toDo.save();
-                toDos.remove(position);
+                Todo todo = todos.get(position);
+                todo.setDone(true);
+                todo.save();
+                todos.remove(position);
                 notifyDataSetChanged();
             }
         }, 1200);
     }
 
-    public void add(ToDo toDo) {
-        toDos.add(0, toDo);
+    public void add(Todo todo) {
+        todos.add(0, todo);
         notifyDataSetChanged();
     }
 
     public void delete(int position) {
-        toDos.remove(position);
+        todos.remove(position);
         notifyDataSetChanged();
     }
 
