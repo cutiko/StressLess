@@ -14,7 +14,9 @@
         android:background="@drawable/bg_white_bordered_accent"
         android:gravity="center_vertical"
         android:hint="@string/dialog_create_todo_hint"
-        android:padding="8dp" />
+        android:maxLines="1"
+        android:padding="8dp"
+        android:singleLine="true" />
 
     <ImageButton
         android:id="@+id/saveBtn"
