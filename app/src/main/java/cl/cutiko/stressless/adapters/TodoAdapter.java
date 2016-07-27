@@ -36,7 +36,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        ToDo toDo = toDos.get(position);
+        final ToDo toDo = toDos.get(position);
+
         CheckBox checkBox = holder.checkBox;
         checkBox.setChecked(toDo.isDone());
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -51,6 +52,15 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        TextView name = holder.name;
+        name.setText(toDo.getName());
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.itemClicked(toDo.getId());
             }
         });
     }
