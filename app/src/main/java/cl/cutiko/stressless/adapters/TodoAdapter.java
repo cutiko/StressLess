@@ -1,5 +1,6 @@
 package cl.cutiko.stressless.adapters;
 
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,9 +83,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         }
     }
 
-    private void isDone(int position){
-        toDos.remove(position);
-        notifyDataSetChanged();
+    private void isDone(final int position){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toDos.remove(position);
+                notifyDataSetChanged();
+            }
+        }, 1200);
     }
 
     public void add(ToDo toDo) {
