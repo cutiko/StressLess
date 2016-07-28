@@ -9,13 +9,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import cl.cutiko.stressless.R;
-import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.models.Pending;
 import cl.cutiko.stressless.views.archive.ArchiveClickListener;
 
 /**
@@ -23,11 +20,11 @@ import cl.cutiko.stressless.views.archive.ArchiveClickListener;
  */
 public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHolder> {
 
-    private List<Todo> todos;
+    private List<Pending> pendings;
     private ArchiveClickListener clickListener;
 
-    public ArchiveAdapter(List<Todo> todos, ArchiveClickListener clickListener) {
-        this.todos = todos;
+    public ArchiveAdapter(List<Pending> pendings, ArchiveClickListener clickListener) {
+        this.pendings = pendings;
         this.clickListener = clickListener;
     }
 
@@ -42,7 +39,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.setIsRecyclable(false);
 
-        Todo todo = todos.get(position);
+        Pending pending = pendings.get(position);
 
         CheckBox checkBox = holder.checkBox;
 
@@ -64,12 +61,12 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
 
 
         TextView name = holder.name;
-        name.setText(todo.getName());
+        name.setText(pending.getName());
     }
 
     @Override
     public int getItemCount() {
-        return todos.size();
+        return pendings.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -85,8 +82,8 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
     }
 
     private void remove(int position){
-        todos.get(position).undo();
-        todos.remove(position);
+        pendings.get(position).undo();
+        pendings.remove(position);
         notifyDataSetChanged();
     }
 

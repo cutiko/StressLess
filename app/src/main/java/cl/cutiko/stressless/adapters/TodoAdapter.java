@@ -13,7 +13,7 @@ import java.util.List;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.data.Todos;
-import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.models.Pending;
 import cl.cutiko.stressless.views.main.todoList.ClickListener;
 
 /**
@@ -21,7 +21,7 @@ import cl.cutiko.stressless.views.main.todoList.ClickListener;
  */
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
-    private List<Todo> todos = new Todos().pendings();
+    private List<Pending> pendings = new Todos().pendings();
     private ClickListener clickListener;
 
     public TodoAdapter(ClickListener clickListener) {
@@ -37,10 +37,10 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final Todo todo = todos.get(position);
+        final Pending pending = pendings.get(position);
 
         CheckBox checkBox = holder.checkBox;
-        checkBox.setChecked(todo.isDone());
+        checkBox.setChecked(pending.isDone());
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -57,18 +57,18 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
 
         TextView name = holder.name;
-        name.setText(todo.getName());
+        name.setText(pending.getName());
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.itemClicked(todo.getId(), position);
+                clickListener.itemClicked(pending.getId(), position);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return todos.size();
+        return pendings.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -84,35 +84,35 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     }
 
     private void isDone(final int position){
-        Todo todo = todos.get(position);
-        todo.setDone(true);
-        todo.save();
-        todos.remove(position);
+        Pending pending = pendings.get(position);
+        pending.setDone(true);
+        pending.save();
+        pendings.remove(position);
         notifyDataSetChanged();
     }
 
-    public void add(Todo todo) {
-        todos.add(0, todo);
+    public void add(Pending pending) {
+        pendings.add(0, pending);
         notifyDataSetChanged();
     }
 
     public void delete(int position) {
-        todos.remove(position);
+        pendings.remove(position);
         notifyDataSetChanged();
     }
 
     public void byName(String name) {
-        todos.clear();
-        List<Todo> byName = new Todos().byName(name);
+        pendings.clear();
+        List<Pending> byName = new Todos().byName(name);
         if (byName != null && byName.size() > 0) {
-            todos.addAll(byName);
+            pendings.addAll(byName);
         }
         notifyDataSetChanged();
     }
 
     public void reset() {
-        todos.clear();
-        todos.addAll(new Todos().pendings());
+        pendings.clear();
+        pendings.addAll(new Todos().pendings());
         notifyDataSetChanged();
     }
 

@@ -1,6 +1,6 @@
 package cl.cutiko.stressless.views.main;
 
-import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.models.Pending;
 
 /**
  * Created by cutiko on 27-07-16.
@@ -14,11 +14,11 @@ public class CreateToDo {
     }
 
     public void validation(String name) {
-        Todo todo = null;
+        Pending pending = null;
         if (name != null && !name.isEmpty() && !name.equals("") && name.trim().length() > 0) {
-            todo = new Todo(name);
-            todo.save();
+            pending = new Pending(name);
+            pending.save();
         }
-        callback.result(todo);
+        callback.result(pending);
     }
 }

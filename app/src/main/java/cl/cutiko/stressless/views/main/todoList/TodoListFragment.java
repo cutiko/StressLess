@@ -9,13 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.adapters.TodoAdapter;
-import cl.cutiko.stressless.data.Todos;
-import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.models.Pending;
 import cl.cutiko.stressless.views.details.DetailsActivity;
 
 /**
@@ -63,8 +59,8 @@ public class TodoListFragment extends Fragment implements ClickListener {
         adapter.reset();
     }
 
-    public void add(Todo todo) {
-        adapter.add(todo);
+    public void add(Pending pending) {
+        adapter.add(pending);
     }
 
     public void search(String name) {

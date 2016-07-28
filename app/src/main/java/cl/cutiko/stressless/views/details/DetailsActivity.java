@@ -7,21 +7,21 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import cl.cutiko.stressless.R;
-import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.models.Pending;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private Todo todo;
+    private Pending pending;
     private EditText descriptionEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        todo = Todo.findById(Todo.class, getIntent().getLongExtra(TodoListFragment.TODO_ID, 0));
+        pending = Pending.findById(Pending.class, getIntent().getLongExtra(TodoListFragment.TODO_ID, 0));
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(todo.getName());
+        actionBar.setTitle(pending.getName());
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDefaultDisplayHomeAsUpEnabled(true);
@@ -31,7 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setDescription(){
-        String description = (todo.getDescription() != null) ? todo.getDescription() : "";
+        String description = (pending.getDescription() != null) ? pending.getDescription() : "";
         descriptionEt.setText(description);
     }
 
@@ -52,8 +52,8 @@ public class DetailsActivity extends AppCompatActivity {
     private void saveDescription(){
         String description  = descriptionEt.getText().toString();
         if (description != null && !description.isEmpty() && !description.equals("") && description.trim().length() > 0) {
-            todo.setDescription(description);
-            todo.save();
+            pending.setDescription(description);
+            pending.save();
         }
     }
 }

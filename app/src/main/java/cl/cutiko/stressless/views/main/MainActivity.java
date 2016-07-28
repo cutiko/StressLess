@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import cl.cutiko.stressless.R;
-import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.models.Pending;
 import cl.cutiko.stressless.views.main.menu.SearchFragment;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
@@ -79,10 +79,10 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
     }
 
     @Override
-    public void result(Todo todo) {
-        if (todo != null) {
-            listFragment.add(todo);
-            searchFragment.add(todo.getName());
+    public void result(Pending pending) {
+        if (pending != null) {
+            listFragment.add(pending);
+            searchFragment.add(pending.getName());
         }
         dialog.dismiss();
         try {

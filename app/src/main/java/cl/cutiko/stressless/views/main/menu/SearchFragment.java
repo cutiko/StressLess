@@ -1,9 +1,7 @@
 package cl.cutiko.stressless.views.main.menu;
 
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,7 +16,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +24,7 @@ import java.util.List;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.data.Todos;
-import cl.cutiko.stressless.models.Todo;
-import cl.cutiko.stressless.views.archive.ArchiveActivity;
+import cl.cutiko.stressless.models.Pending;
 import cl.cutiko.stressless.views.main.SearchListener;
 
 /**
@@ -138,7 +134,7 @@ public class SearchFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void remove(Todo todo) {
+    public void remove(Pending pending) {
 
     }
 

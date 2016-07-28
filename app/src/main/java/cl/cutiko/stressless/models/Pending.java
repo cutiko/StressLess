@@ -5,15 +5,16 @@ import com.orm.SugarRecord;
 /**
  * Created by cutiko on 27-07-16.
  */
-public class Todo extends SugarRecord {
+public class Pending extends SugarRecord {
 
     private String name, description;
     private boolean done;
+    private long category_id;
 
-    public Todo() {
+    public Pending() {
     }
 
-    public Todo(String name) {
+    public Pending(String name) {
         this.name = name;
         done = false;
         description = null;
@@ -41,6 +42,14 @@ public class Todo extends SugarRecord {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public long getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(long category_id) {
+        this.category_id = category_id;
     }
 
     public void undo() {

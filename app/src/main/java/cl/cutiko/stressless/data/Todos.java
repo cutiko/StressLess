@@ -3,50 +3,50 @@ package cl.cutiko.stressless.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import cl.cutiko.stressless.models.Todo;
+import cl.cutiko.stressless.models.Pending;
 
 /**
  * Created by cutiko on 27-07-16.
  */
 public class Todos {
 
-    public List<Todo> pendings() {
-        List<Todo> todos = new ArrayList<>();
-        List<Todo> check = Todo.find(Todo.class, "done = 0");
+    public List<Pending> pendings() {
+        List<Pending> pendings = new ArrayList<>();
+        List<Pending> check = Pending.find(Pending.class, "done = 0");
         if (check != null && check.size() > 0) {
-            todos = check;
+            pendings = check;
         }
-        return todos;
+        return pendings;
     }
 
     public List<String> pendingNames() {
         List<String> list = new ArrayList<>();
-        List<Todo> check = pendings();
+        List<Pending> check = pendings();
         if (check != null && check.size() > 0) {
-            for (Todo todo : check) {
-                list.add(todo.getName());
+            for (Pending pending : check) {
+                list.add(pending.getName());
             }
         }
         return list;
     }
 
-    public List<Todo> byName(String name) {
-        List<Todo> todos = new ArrayList<>();
+    public List<Pending> byName(String name) {
+        List<Pending> pendings = new ArrayList<>();
         String query = "name LIKE " + "'%"+name+"%'" + " AND done = 0";
-        List<Todo> check = Todo.find(Todo.class, query);
+        List<Pending> check = Pending.find(Pending.class, query);
         if (check != null && check.size() > 0) {
-            todos = check;
+            pendings = check;
         }
-        return todos;
+        return pendings;
     }
 
-    public List<Todo> archived() {
-        List<Todo> todos = new ArrayList<>();
-        List<Todo> check = Todo.find(Todo.class, "done = 1");
+    public List<Pending> archived() {
+        List<Pending> pendings = new ArrayList<>();
+        List<Pending> check = Pending.find(Pending.class, "done = 1");
         if (check != null && check.size() > 0) {
-            todos = check;
+            pendings = check;
         }
-        return todos;
+        return pendings;
     }
 
 }
