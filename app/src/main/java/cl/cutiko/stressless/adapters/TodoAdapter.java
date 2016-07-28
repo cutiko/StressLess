@@ -51,7 +51,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
                         public void run() {
                             isDone(position);
                         }
-                    }, 800);
+                    }, 100);
                 }
             }
         });
