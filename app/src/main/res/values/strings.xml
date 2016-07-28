@@ -10,5 +10,5 @@
     <string name="label_instructions">Dele un nombre a la etiquete, se guarda al seleccionar el color</string>
     <string name="label_hint">Nombre de la etiqueta</string>
     <string name="label_error">Campo requerido</string>
-    <string name="category_hint">Seleccione una etiqueta (o cree una en el menu)</string>
+    <string name="category_hint">Seleccione o cree una en el menu</string>
 </resources>
