@@ -6,22 +6,40 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin">
 
+    <ImageButton
+        android:id="@+id/closeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:src="@mipmap/ic_close_white_24dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="@string/label_instructions"
-        android:textColor="@color/colorWhite" />
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/labelName"
-        android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/label_hint"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:singleLine="true" />
 
     <com.thebluealliance.spectrum.SpectrumPalette
         android:id="@+id/colorPicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryLight"
+        android:paddingBottom="44dp"
+        android:paddingTop="44dp" />
 
 </LinearLayout>
