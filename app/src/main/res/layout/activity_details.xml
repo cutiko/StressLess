@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/descriptionEt"
         android:layout_marginTop="14dp"
-        android:dropDownSelector="@mipmap/ic_launcher"
         android:background="@color/colorPrimary" />
 
 </RelativeLayout>
