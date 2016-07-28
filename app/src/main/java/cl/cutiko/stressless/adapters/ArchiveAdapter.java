@@ -83,8 +83,12 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
         }
     }
 
-    public Long[] getIds() {
-       return ids.toArray(new Long[ids.size()]);
+    public long[] getIds() {
+        long[] longIds = new long[ids.size()];
+        for (int i = 0; i < ids.size(); i++) {
+            longIds[i] = ids.get(i);
+        }
+        return longIds;
     }
 
 }

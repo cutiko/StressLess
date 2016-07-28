@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
     }
 
     @Override
-    public void unarchive(Long[] ids) {
+    public void unarchive(long[] ids) {
         for (long id : ids) {
             Todo todo = Todo.findById(Todo.class, id);
             todo.unarchived();

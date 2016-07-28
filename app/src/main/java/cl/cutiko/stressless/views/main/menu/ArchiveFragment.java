@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.views.archive.ArchiveActivity;
 import cl.cutiko.stressless.views.main.ArchiveListener;
@@ -58,7 +60,8 @@ public class ArchiveFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ARCHIVE_INTENT) {
             if (resultCode == Activity.RESULT_OK) {
-                listener.unarchive((Long[]) data.getSerializableExtra(ArchiveActivity.UNARCHIVE));
+                long[] ids = (long[]) data.getSerializableExtra(ArchiveActivity.UNARCHIVE);
+                listener.unarchive(ids);
             }
         }
     }

@@ -1,12 +1,18 @@
 package cl.cutiko.stressless.views.archive;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.adapters.ArchiveAdapter;
@@ -66,7 +72,7 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveClickLi
 
     @Override
     public void onBackPressed() {
-        Long[] ids = adapter.getIds();
+        long[] ids = adapter.getIds();
         Intent intent = new Intent();
         if (ids != null && ids.length > 0) {
             intent.putExtra(UNARCHIVE, adapter.getIds());
