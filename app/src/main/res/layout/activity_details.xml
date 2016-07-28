@@ -31,9 +31,4 @@
         android:dropDownSelector="@mipmap/ic_launcher"
         android:background="@color/colorPrimary" />
 
-    <com.thebluealliance.spectrum.SpectrumPalette
-        android:id="@+id/palette"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
 </RelativeLayout>

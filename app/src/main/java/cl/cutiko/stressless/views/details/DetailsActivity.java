@@ -1,13 +1,16 @@
 package cl.cutiko.stressless.views.details;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -28,6 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
     private Pending pending;
     private EditText descriptionEt;
     private Spinner spinner;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +47,30 @@ public class DetailsActivity extends AppCompatActivity {
         descriptionEt = (EditText) findViewById(R.id.descriptionEt);
         setDescription();
 
-        spinner = (Spinner) findViewById(R.id.categoryDd);
+        setDialog();
 
-        SpectrumPalette spectrumPalette = (SpectrumPalette) findViewById(R.id.palette);
+        spinner = (Spinner) findViewById(R.id.categoryDd);
+    }
+
+    private void setDialog() {
+        dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_create_label);
+
+        final EditText labelInput = (EditText) dialog.findViewById(R.id.labelName);
+
+        SpectrumPalette spectrumPalette = (SpectrumPalette) dialog.findViewById(R.id.colorPicker);
         int[] colors = getResources().getIntArray(R.array.demo_colors);
         spectrumPalette.setColors(colors);
         spectrumPalette.setOnColorSelectedListener(new SpectrumPalette.OnColorSelectedListener() {
             @Override
             public void onColorSelected(@ColorInt int color) {
-                Toast.makeText(DetailsActivity.this, Integer.toHexString(color).toUpperCase(), Toast.LENGTH_SHORT).show();
+                String name = labelInput.getText().toString();
+                if (name != null && !name.isEmpty() && !name.equals("") && name.trim().length() > 0) {
+                    /*Toast.makeText(DetailsActivity.this, Integer.toHexString(color).toUpperCase(), Toast.LENGTH_SHORT).show();*/
+                } else {
+                    labelInput.setError(getString(R.string.label_error));
+                }
             }
         });
     }
@@ -72,6 +91,8 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             super.onBackPressed();
+        } else if (item.getItemId() == R.id.actionsLabel) {
+            dialog.show();
         }
         return true;
     }
