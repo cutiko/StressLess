@@ -46,7 +46,12 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    isDone(position);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            isDone(position);
+                        }
+                    }, 800);
                 }
             }
         });
@@ -80,16 +85,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     }
 
     private void isDone(final int position){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Todo todo = todos.get(position);
-                todo.setDone(true);
-                todo.save();
-                todos.remove(position);
-                notifyDataSetChanged();
-            }
-        }, 1200);
+        Todo todo = todos.get(position);
+        todo.setDone(true);
+        todo.save();
+        todos.remove(position);
+        notifyDataSetChanged();
     }
 
     public void add(Todo todo) {

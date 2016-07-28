@@ -51,4 +51,10 @@ public class Todo extends SugarRecord {
     public void setArchived(boolean archived) {
         this.archived = archived;
     }
+
+    public void unarchived() {
+        done = false;
+        archived = false;
+        save();
+    }
 }
