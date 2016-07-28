@@ -46,6 +46,7 @@
         android:padding="8dp"
         android:src="@mipmap/ic_add_white_24dp" />
 
+    <!--android:spinnerMode="dialog"-->
     <Spinner
         android:id="@+id/categoryDd"
         android:layout_width="match_parent"
