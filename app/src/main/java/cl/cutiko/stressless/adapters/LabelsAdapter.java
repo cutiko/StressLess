@@ -29,20 +29,20 @@ public class LabelsAdapter extends ArrayAdapter<ColoredLabel> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return getConvertView(position, convertView, parent, R.mipmap.ic_keyboard_arrow_down_white_24dp);
+        return getConvertView(position, convertView, parent, R.layout.list_item_label_prompt);
     }
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        return getConvertView(position, convertView, parent, null);
+        return getConvertView(position, convertView, parent, R.layout.list_item_colored_label);
     }
 
-    public View getConvertView(int position, View convertView, ViewGroup parent, Integer drawableRight){
+    public View getConvertView(int position, View convertView, ViewGroup parent, int resource){
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         ViewChildHolder holder;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.list_item_colored_label, parent, false);
+            convertView = inflater.inflate(resource, parent, false);
             holder = new ViewChildHolder();
             holder.colorHolder = convertView.findViewById(R.id.colorHolder);
             holder.name = (TextView) convertView.findViewById(R.id.labelTv);
@@ -55,16 +55,13 @@ public class LabelsAdapter extends ArrayAdapter<ColoredLabel> {
         holder.colorHolder.setBackgroundColor(Color.parseColor(label.getColor()));
         holder.name.setText(label.getName());
 
-        if (drawableRight != null) {
-            holder.name.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, drawableRight, 0);
-        }
-
         return convertView;
     }
 
     @Override
     public long getItemId(int position) {
-        return getItem(position).getId();
+        long id = (getItem(position).getId() != null) ? getItem(position).getId() : 0 ;
+        return id;
     }
 }
 
