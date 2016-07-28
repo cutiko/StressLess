@@ -15,7 +15,7 @@ import java.util.Map;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.models.Todo;
-import cl.cutiko.stressless.views.archive.ArchiveListener;
+import cl.cutiko.stressless.views.archive.ArchiveClickListener;
 
 /**
  * Created by cutiko on 27-07-16.
@@ -23,12 +23,12 @@ import cl.cutiko.stressless.views.archive.ArchiveListener;
 public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHolder> {
 
     private List<Todo> todos;
-    private ArchiveListener clickListener;
+    private ArchiveClickListener clickListener;
 
     private Map<Long, Integer> map = new HashMap<>();
     private List<Long> ids = new ArrayList<>();
 
-    public ArchiveAdapter(List<Todo> todos, ArchiveListener clickListener) {
+    public ArchiveAdapter(List<Todo> todos, ArchiveClickListener clickListener) {
         this.todos = todos;
         this.clickListener = clickListener;
     }

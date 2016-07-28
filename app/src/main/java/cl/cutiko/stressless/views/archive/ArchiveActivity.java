@@ -12,13 +12,13 @@ import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.adapters.ArchiveAdapter;
 import cl.cutiko.stressless.data.Todos;
 
-public class ArchiveActivity extends AppCompatActivity implements ArchiveListener{
+public class ArchiveActivity extends AppCompatActivity implements ArchiveClickListener {
 
     private ActionBar actionBar;
     private int counter = 0;
     private ArchiveAdapter adapter;
 
-    private static final String UNARCHIVE = "UNARCHIVE";
+    public static final String UNARCHIVE = "UNARCHIVE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

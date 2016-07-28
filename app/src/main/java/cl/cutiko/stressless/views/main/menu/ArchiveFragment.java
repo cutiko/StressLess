@@ -2,6 +2,7 @@ package cl.cutiko.stressless.views.main.menu;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.views.archive.ArchiveActivity;
+import cl.cutiko.stressless.views.main.ArchiveListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,12 +21,18 @@ import cl.cutiko.stressless.views.archive.ArchiveActivity;
 public class ArchiveFragment extends Fragment {
 
     private static final int ARCHIVE_INTENT = 222;
+    private ArchiveListener listener;
 
 
     public ArchiveFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (ArchiveListener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +58,7 @@ public class ArchiveFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ARCHIVE_INTENT) {
             if (resultCode == Activity.RESULT_OK) {
-                //TODO move this
+                listener.unarchive((Long[]) data.getSerializableExtra(ArchiveActivity.UNARCHIVE));
             }
         }
     }

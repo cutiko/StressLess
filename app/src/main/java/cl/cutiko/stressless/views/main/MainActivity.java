@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -21,7 +22,7 @@ import cl.cutiko.stressless.models.Todo;
 import cl.cutiko.stressless.views.main.menu.SearchFragment;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
-public class MainActivity extends AppCompatActivity implements CreateToDoCallback, SearchListener {
+public class MainActivity extends AppCompatActivity implements CreateToDoCallback, SearchListener, ArchiveListener {
 
     private Dialog dialog;
     private TodoListFragment listFragment;
@@ -97,5 +98,10 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
     @Override
     public void searchBy(String name) {
         listFragment.search(name);
+    }
+
+    @Override
+    public void unarchive(Long[] ids) {
+
     }
 }
