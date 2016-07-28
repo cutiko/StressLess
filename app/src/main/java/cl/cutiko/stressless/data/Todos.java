@@ -12,7 +12,7 @@ public class Todos {
 
     public List<Todo> pendings() {
         List<Todo> todos = new ArrayList<>();
-        List<Todo> check = Todo.find(Todo.class, "done = 0 AND archived = 0");
+        List<Todo> check = Todo.find(Todo.class, "done = 0");
         if (check != null && check.size() > 0) {
             todos = check;
         }
@@ -32,7 +32,7 @@ public class Todos {
 
     public List<Todo> byName(String name) {
         List<Todo> todos = new ArrayList<>();
-        String query = "name LIKE " + "'%"+name+"%'" + " AND done = 0 AND archived = 0";
+        String query = "name LIKE " + "'%"+name+"%'" + " AND done = 0";
         List<Todo> check = Todo.find(Todo.class, query);
         if (check != null && check.size() > 0) {
             todos = check;
@@ -42,7 +42,7 @@ public class Todos {
 
     public List<Todo> archived() {
         List<Todo> todos = new ArrayList<>();
-        List<Todo> check = Todo.find(Todo.class, "done = 1 OR archived = 1");
+        List<Todo> check = Todo.find(Todo.class, "done = 1");
         if (check != null && check.size() > 0) {
             todos = check;
         }

@@ -24,8 +24,6 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveClickLi
     private int counter = 0;
     private ArchiveAdapter adapter;
 
-    public static final String UNARCHIVE = "UNARCHIVE";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +70,8 @@ public class ArchiveActivity extends AppCompatActivity implements ArchiveClickLi
 
     @Override
     public void onBackPressed() {
-        long[] ids = adapter.getIds();
         Intent intent = new Intent();
-        if (ids != null && ids.length > 0) {
-            intent.putExtra(UNARCHIVE, adapter.getIds());
+        if (counter > 0) {
             setResult(RESULT_OK, intent);
         } else {
             setResult(RESULT_CANCELED);

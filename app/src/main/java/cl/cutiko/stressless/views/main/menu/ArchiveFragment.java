@@ -60,8 +60,7 @@ public class ArchiveFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ARCHIVE_INTENT) {
             if (resultCode == Activity.RESULT_OK) {
-                long[] ids = (long[]) data.getSerializableExtra(ArchiveActivity.UNARCHIVE);
-                listener.unarchive(ids);
+                listener.unarchive();
             }
         }
     }

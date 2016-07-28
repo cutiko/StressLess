@@ -5,6 +5,6 @@ package cl.cutiko.stressless.views.main;
  */
 public interface ArchiveListener {
 
-    void unarchive(long[] ids);
+    void unarchive();
 
 }

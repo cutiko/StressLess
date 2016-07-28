@@ -21,11 +21,10 @@ import cl.cutiko.stressless.views.main.todoList.ClickListener;
  */
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
-    private List<Todo> todos;
+    private List<Todo> todos = new Todos().pendings();
     private ClickListener clickListener;
 
-    public TodoAdapter(List<Todo> todos, ClickListener clickListener) {
-        this.todos = todos;
+    public TodoAdapter(ClickListener clickListener) {
         this.clickListener = clickListener;
     }
 
@@ -108,6 +107,12 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         if (byName != null && byName.size() > 0) {
             todos.addAll(byName);
         }
+        notifyDataSetChanged();
+    }
+
+    public void reset() {
+        todos.clear();
+        todos.addAll(new Todos().pendings());
         notifyDataSetChanged();
     }
 

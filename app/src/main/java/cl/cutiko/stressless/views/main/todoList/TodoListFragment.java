@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.adapters.TodoAdapter;
 import cl.cutiko.stressless.data.Todos;
@@ -35,7 +38,7 @@ public class TodoListFragment extends Fragment implements ClickListener {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new TodoAdapter(new Todos().pendings(), this);
+        adapter = new TodoAdapter(this);
 
         recyclerView.setAdapter(adapter);
 
@@ -45,6 +48,10 @@ public class TodoListFragment extends Fragment implements ClickListener {
     @Override
     public void itemClicked(Long id, int position) {
 
+    }
+
+    public void refresh() {
+        adapter.reset();
     }
 
     public void add(Todo todo) {

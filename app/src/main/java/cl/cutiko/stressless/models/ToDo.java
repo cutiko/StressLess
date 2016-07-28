@@ -8,7 +8,7 @@ import com.orm.SugarRecord;
 public class Todo extends SugarRecord {
 
     private String name, description;
-    private boolean done, archived;
+    private boolean done;
 
     public Todo() {
     }
@@ -16,7 +16,6 @@ public class Todo extends SugarRecord {
     public Todo(String name) {
         this.name = name;
         done = false;
-        archived = false;
         description = null;
     }
 
@@ -44,17 +43,8 @@ public class Todo extends SugarRecord {
         this.done = done;
     }
 
-    public boolean isArchived() {
-        return archived;
-    }
-
-    public void setArchived(boolean archived) {
-        this.archived = archived;
-    }
-
-    public void unarchived() {
+    public void undo() {
         done = false;
-        archived = false;
         save();
     }
 }

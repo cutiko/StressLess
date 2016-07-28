@@ -1,5 +1,6 @@
 package cl.cutiko.stressless.adapters;
 
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +26,6 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
     private List<Todo> todos;
     private ArchiveClickListener clickListener;
 
-    private List<Long> ids = new ArrayList<>();
-
     public ArchiveAdapter(List<Todo> todos, ArchiveClickListener clickListener) {
         this.todos = todos;
         this.clickListener = clickListener;
@@ -43,40 +42,22 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.setIsRecyclable(false);
 
-        final Todo todo = todos.get(position);
-        final long id = todo.getId();
+        Todo todo = todos.get(position);
 
         CheckBox checkBox = holder.checkBox;
-
-        checkBox.setOnCheckedChangeListener(null);
-
-        if (!todo.isArchived() && !todo.isDone()) {
-            checkBox.setChecked(true);
-        } else {
-            checkBox.setChecked(false);
-        }
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Todo aux = todos.get(position);
                 if (isChecked) {
                     clickListener.selectedItem(1);
-                    ids.add(id);
-                    aux.setArchived(false);
-                    aux.setDone(false);
-                } else {
-                    clickListener.selectedItem(-1);
-                    int removePosition = 0;
-                    while (ids.get(removePosition) != id) {
-                        removePosition++;
-                    }
-                    ids.remove(removePosition);
-                    aux.setArchived(true);
-                    aux.setDone(true);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            remove(position);
+                        }
+                    }, 100);
                 }
-                todos.set(position, aux);
-                notifyDataSetChanged();
 
             }
         });
@@ -103,12 +84,10 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
         }
     }
 
-    public long[] getIds() {
-        long[] longIds = new long[ids.size()];
-        for (int i = 0; i < ids.size(); i++) {
-            longIds[i] = ids.get(i);
-        }
-        return longIds;
+    private void remove(int position){
+        todos.get(position).undo();
+        todos.remove(position);
+        notifyDataSetChanged();
     }
 
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -101,11 +100,7 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
     }
 
     @Override
-    public void unarchive(long[] ids) {
-        for (long id : ids) {
-            Todo todo = Todo.findById(Todo.class, id);
-            todo.unarchived();
-            listFragment.add(todo);
-        }
+    public void unarchive() {
+        listFragment.refresh();
     }
 }
