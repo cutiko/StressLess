@@ -1,6 +1,7 @@
 package cl.cutiko.stressless.views.details;
 
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,6 +11,10 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.thebluealliance.spectrum.SpectrumPalette;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +44,16 @@ public class DetailsActivity extends AppCompatActivity {
         setDescription();
 
         spinner = (Spinner) findViewById(R.id.categoryDd);
+
+        SpectrumPalette spectrumPalette = (SpectrumPalette) findViewById(R.id.palette);
+        int[] colors = getResources().getIntArray(R.array.demo_colors);
+        spectrumPalette.setColors(colors);
+        spectrumPalette.setOnColorSelectedListener(new SpectrumPalette.OnColorSelectedListener() {
+            @Override
+            public void onColorSelected(@ColorInt int color) {
+                Toast.makeText(DetailsActivity.this, Integer.toHexString(color).toUpperCase(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setDescription(){

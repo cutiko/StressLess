@@ -10,4 +10,16 @@
     <color name="colorGray">#727272</color>
     <color name="colorDisable">#B6B6B6</color>
 
+    <array name="demo_colors">
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimaryDark</item>
+        <item>@color/colorPrimaryLight</item>
+        <item>@color/colorAccent</item>
+        <item>@color/colorAccentDark</item>
+        <item>@color/colorWhite</item>
+        <item>@color/colorBlack</item>
+        <item>@color/colorGray</item>
+        <item>@color/colorDisable</item>
+    </array>
+
 </resources>
