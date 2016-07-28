@@ -1,6 +1,7 @@
 package cl.cutiko.stressless.views.details;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.ActionBar;
@@ -124,11 +125,21 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            super.onBackPressed();
+            onBackPressed();
         } else if (item.getItemId() == R.id.actionsLabel) {
             dialog.show();
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra(TodoListFragment.TODO_ID, pending.getId());
+        intent.putExtra(TodoListFragment.TODO_POSITION, getIntent().getIntExtra(TodoListFragment.TODO_POSITION, 0));
+        setResult(RESULT_OK, intent);
+        finish();
+        super.onBackPressed();
     }
 
     @Override

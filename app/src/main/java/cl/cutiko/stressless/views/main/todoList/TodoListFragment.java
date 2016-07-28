@@ -1,5 +1,6 @@
 package cl.cutiko.stressless.views.main.todoList;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -65,5 +66,17 @@ public class TodoListFragment extends Fragment implements ClickListener {
 
     public void search(String name) {
         adapter.byName(name);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == DETAILS_INTENT) {
+            if (resultCode == Activity.RESULT_OK) {
+                int position = data.getIntExtra(TODO_POSITION, 0);
+                long id = data.getLongExtra(TODO_ID, 0);
+                adapter.update(position, id);
+            }
+        }
     }
 }

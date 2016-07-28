@@ -107,6 +107,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void update(int position, long id) {
+        pendings.set(position, Pending.findById(Pending.class, id));
+        notifyDataSetChanged();
+    }
+
     public void byName(String name) {
         pendings.clear();
         List<Pending> byName = new Todos().byName(name);
