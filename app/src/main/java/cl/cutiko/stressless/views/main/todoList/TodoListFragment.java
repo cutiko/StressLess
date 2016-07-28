@@ -76,6 +76,9 @@ public class TodoListFragment extends Fragment implements ClickListener {
                 int position = data.getIntExtra(TODO_POSITION, 0);
                 long id = data.getLongExtra(TODO_ID, 0);
                 adapter.update(position, id);
+            } else {
+                int position = data.getIntExtra(TODO_POSITION, 0);
+                adapter.delete(position);
             }
         }
     }

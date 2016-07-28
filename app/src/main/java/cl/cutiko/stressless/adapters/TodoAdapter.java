@@ -103,6 +103,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     }
 
     public void delete(int position) {
+        pendings.get(position).delete();
         pendings.remove(position);
         notifyDataSetChanged();
     }

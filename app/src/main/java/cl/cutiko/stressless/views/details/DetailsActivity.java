@@ -1,10 +1,12 @@
 package cl.cutiko.stressless.views.details;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -128,6 +130,27 @@ public class DetailsActivity extends AppCompatActivity {
             onBackPressed();
         } else if (item.getItemId() == R.id.actionsLabel) {
             dialog.show();
+        } else if (item.getItemId() == R.id.actionsDelete) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setTitle("¿Está Seguro?");
+            alertDialog.setMessage("¿Borrar el Todo? (Esta acción es irreversible)");
+            alertDialog.setPositiveButton("Borrar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent();
+                    intent.putExtra(TodoListFragment.TODO_POSITION, getIntent().getIntExtra(TodoListFragment.TODO_POSITION, 0));
+                    setResult(RESULT_CANCELED, intent);
+                    finish();
+                    dialog.dismiss();
+                }
+            });
+            alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alertDialog.show();
         }
         return true;
     }
