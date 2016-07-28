@@ -1,5 +1,6 @@
 package cl.cutiko.stressless.adapters;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -64,6 +66,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
                 clickListener.itemClicked(pending.getId(), position);
             }
         });
+
+        holder.colorHolder.setBackgroundColor(Color.parseColor(pending.getColor()));
+
     }
 
     @Override
@@ -72,15 +77,15 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        View colorHolder;
+        LinearLayout colorHolder;
         CheckBox checkBox;
         TextView name;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            colorHolder = itemView.findViewById(R.id.colorHolder);
             checkBox = (CheckBox) itemView.findViewById(R.id.todoCb);
             name = (TextView) itemView.findViewById(R.id.todoName);
+            colorHolder = (LinearLayout) name.getParent();
         }
     }
 
