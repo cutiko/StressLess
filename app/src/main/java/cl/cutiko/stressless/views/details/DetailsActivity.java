@@ -98,6 +98,9 @@ public class DetailsActivity extends AppCompatActivity {
                     pending.setCategory_id(label.getId());
                     pending.save();
                     dialog.dismiss();
+                    labels.add(label);
+                    adapter.notifyDataSetChanged();
+                    spinner.setSelection(labels.size()-1, false);
                 } else {
                     labelInput.setError(getString(R.string.label_error));
                 }
