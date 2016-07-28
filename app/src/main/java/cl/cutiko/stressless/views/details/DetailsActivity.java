@@ -53,7 +53,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setDialog() {
-        dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        dialog = new Dialog(this, R.style.FullscreenTheme);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_create_label);
 
