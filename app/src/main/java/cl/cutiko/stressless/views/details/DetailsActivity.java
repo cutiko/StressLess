@@ -38,7 +38,7 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            super.onBackPressed();
         }
         return true;
     }
@@ -47,11 +47,6 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         saveDescription();
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
     }
 
     private void saveDescription(){
