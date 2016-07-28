@@ -6,13 +6,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.adapters.ArchiveAdapter;
 import cl.cutiko.stressless.data.Todos;
-import cl.cutiko.stressless.views.main.menu.MenuFragment;
 
 public class ArchiveActivity extends AppCompatActivity implements ArchiveListener{
 

@@ -18,14 +18,14 @@ import android.widget.TextView;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.models.Todo;
-import cl.cutiko.stressless.views.main.menu.MenuFragment;
+import cl.cutiko.stressless.views.main.menu.SearchFragment;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
 public class MainActivity extends AppCompatActivity implements CreateToDoCallback, SearchListener {
 
     private Dialog dialog;
     private TodoListFragment listFragment;
-    private MenuFragment searchFragment;
+    private SearchFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements CreateToDoCallbac
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listFragment = (TodoListFragment) getSupportFragmentManager().findFragmentById(R.id.todoListFragment);
-        searchFragment = (MenuFragment) getSupportFragmentManager().findFragmentById(R.id.searchFragment);
+        searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.searchFragment);
         setFab();
     }
 

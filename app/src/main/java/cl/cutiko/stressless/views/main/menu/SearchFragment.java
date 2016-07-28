@@ -8,7 +8,6 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -22,7 +21,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +34,7 @@ import cl.cutiko.stressless.views.main.SearchListener;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenuFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
     private static final int SEARCH_EXPANDED = 111;
     private static final int SEARCH_COLLAPSED = 000;
@@ -46,7 +44,7 @@ public class MenuFragment extends Fragment {
     private List<String> names = new ArrayList<>();
     private ArrayAdapter<String> adapter;
 
-    public MenuFragment() {
+    public SearchFragment() {
         // Required empty public constructor
     }
 
@@ -59,7 +57,7 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View main = inflater.inflate(R.layout.fragment_menu, container, false);
+        View main = inflater.inflate(R.layout.fragment_search, container, false);
 
         AutoCompleteTextView autoComplete = (AutoCompleteTextView) main.findViewById(R.id.searchBar);
 
