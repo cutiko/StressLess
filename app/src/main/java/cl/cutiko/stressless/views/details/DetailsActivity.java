@@ -54,6 +54,11 @@ public class DetailsActivity extends AppCompatActivity {
         setDialog();
 
         spinner = (Spinner) findViewById(R.id.categoryDd);
+        setSpinner();
+    }
+
+    private void setSpinner() {
+
     }
 
     private void setDialog() {
