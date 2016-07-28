@@ -6,4 +6,5 @@
     <string name="title_activity_archive">Seleccione para restaurar</string>
     <string name="title_archive_selection">%1$d items restaurados</string>
     <string name="description_hint">Ingrese una descripción</string>
+    <string name="category_hint">Cree una nueva categoria o seleccione una</string>
 </resources>

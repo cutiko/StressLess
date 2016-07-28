@@ -4,7 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.models.Pending;
@@ -14,6 +19,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private Pending pending;
     private EditText descriptionEt;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,8 @@ public class DetailsActivity extends AppCompatActivity {
 
         descriptionEt = (EditText) findViewById(R.id.descriptionEt);
         setDescription();
+
+        spinner = (Spinner) findViewById(R.id.categoryDd);
     }
 
     private void setDescription(){
