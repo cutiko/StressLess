@@ -42,22 +42,41 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+        holder.setIsRecyclable(false);
+
         final Todo todo = todos.get(position);
         final long id = todo.getId();
 
         CheckBox checkBox = holder.checkBox;
+
+        checkBox.setOnCheckedChangeListener(null);
+
+        if (!todo.isArchived() && !todo.isDone()) {
+            checkBox.setChecked(true);
+        } else {
+            checkBox.setChecked(false);
+        }
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Todo aux = todos.get(position);
                 if (isChecked) {
                     clickListener.selectedItem(1);
                     ids.add(id);
                     map.put(id, position);
+                    aux.setArchived(false);
+                    aux.setDone(false);
                 } else {
                     clickListener.selectedItem(-1);
                     int removePosition = map.get(id);
                     ids.remove(removePosition);
+                    aux.setArchived(true);
+                    aux.setDone(true);
                 }
+                todos.set(position, aux);
+                notifyDataSetChanged();
+
             }
         });
 
