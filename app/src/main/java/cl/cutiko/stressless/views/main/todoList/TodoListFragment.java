@@ -3,7 +3,9 @@ package cl.cutiko.stressless.views.main.todoList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,6 +46,22 @@ public class TodoListFragment extends Fragment implements ClickListener {
         adapter = new TodoAdapter(this);
 
         recyclerView.setAdapter(adapter);
+
+        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) mainView.findViewById(R.id.swiperefresh);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.reset();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (refreshLayout.isRefreshing()) {
+                            refreshLayout.setRefreshing(false);
+                        }
+                    }
+                }, 1200);
+            }
+        });
 
         return mainView;
     }
