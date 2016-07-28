@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.details.DetailsActivity">
+    <item
+        android:icon="@mipmap/ic_color_lens_white_24dp"
+        android:title="@string/action_color"
+        android:id="@+id/actionsLabel"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/actionsDelete"
+        android:title="@string/action_delete"
+        app:showAsAction="never" />
+</menu>
