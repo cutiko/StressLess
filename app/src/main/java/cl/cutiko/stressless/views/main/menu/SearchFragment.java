@@ -38,7 +38,6 @@ public class SearchFragment extends Fragment {
 
     private static final int SEARCH_EXPANDED = 111;
     private static final int SEARCH_COLLAPSED = 000;
-    private static final int ARCHIVE_INTENT = 222;
 
     private SearchListener listener;
     private List<String> names = new ArrayList<>();
@@ -73,15 +72,6 @@ public class SearchFragment extends Fragment {
 
         setSearchUi(autoComplete, expander, width);
         setCompletion(autoComplete);
-
-        ImageButton archive = (ImageButton) main.findViewById(R.id.archivesBtn);
-        archive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ArchiveActivity.class);
-                startActivityForResult(intent, ARCHIVE_INTENT);
-            }
-        });
 
         return main;
     }
@@ -158,16 +148,6 @@ public class SearchFragment extends Fragment {
             inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
         } catch (Exception e) {
 
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ARCHIVE_INTENT) {
-            if (resultCode == Activity.RESULT_OK) {
-                //TODO move this
-            }
         }
     }
 }
