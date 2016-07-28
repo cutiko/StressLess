@@ -27,6 +27,7 @@ import java.util.List;
 
 import cl.cutiko.stressless.R;
 import cl.cutiko.stressless.adapters.LabelsAdapter;
+import cl.cutiko.stressless.data.Labels;
 import cl.cutiko.stressless.models.ColoredLabel;
 import cl.cutiko.stressless.models.Pending;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
@@ -37,6 +38,8 @@ public class DetailsActivity extends AppCompatActivity {
     private EditText descriptionEt;
     private Spinner spinner;
     private Dialog dialog;
+    private LabelsAdapter adapter;
+    private List<ColoredLabel> labels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +63,9 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void setSpinner() {
         ColoredLabel prompt = new ColoredLabel(getString(R.string.category_hint), "FF4081");
-        List<ColoredLabel> labels = new ArrayList<>();
-        labels.add(prompt);
-        LabelsAdapter adapter = new LabelsAdapter(this, R.layout.list_item_colored_label, labels);
+        labels = new Labels().all();
+        labels.add(0, prompt);
+        adapter = new LabelsAdapter(this, R.layout.list_item_colored_label, labels);
         spinner.setAdapter(adapter);
     }
 
