@@ -17,4 +17,9 @@
         android:background="@drawable/bg_white_bordered_primary_light"
         android:lines="5" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/notesList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>
