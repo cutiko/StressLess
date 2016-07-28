@@ -6,12 +6,11 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/closeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
         android:src="@mipmap/ic_close_white_24dp" />
 
     <TextView

@@ -14,7 +14,7 @@ public class ColoredLabel extends SugarRecord{
 
     public ColoredLabel(String name, String color) {
         this.name = name;
-        this.color = color;
+        this.color = "#"+color;
     }
 
     public String getName() {

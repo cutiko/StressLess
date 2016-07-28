@@ -10,9 +10,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cl.cutiko.stressless.R;
+import cl.cutiko.stressless.models.ColoredLabel;
 import cl.cutiko.stressless.models.Pending;
 import cl.cutiko.stressless.views.main.todoList.TodoListFragment;
 
@@ -57,6 +61,15 @@ public class DetailsActivity extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_create_label);
 
+        ImageView closeBtn = (ImageView) dialog.findViewById(R.id.closeBtn);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
         final EditText labelInput = (EditText) dialog.findViewById(R.id.labelName);
 
         SpectrumPalette spectrumPalette = (SpectrumPalette) dialog.findViewById(R.id.colorPicker);
@@ -67,7 +80,11 @@ public class DetailsActivity extends AppCompatActivity {
             public void onColorSelected(@ColorInt int color) {
                 String name = labelInput.getText().toString();
                 if (name != null && !name.isEmpty() && !name.equals("") && name.trim().length() > 0) {
-                    /*Toast.makeText(DetailsActivity.this, Integer.toHexString(color).toUpperCase(), Toast.LENGTH_SHORT).show();*/
+                    ColoredLabel label = new ColoredLabel(name, Integer.toHexString(color).toUpperCase());
+                    label.save();
+                    pending.setCategory_id(label.getId());
+                    pending.save();
+                    dialog.dismiss();
                 } else {
                     labelInput.setError(getString(R.string.label_error));
                 }
