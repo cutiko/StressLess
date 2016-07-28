@@ -25,7 +25,6 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
     private List<Todo> todos;
     private ArchiveClickListener clickListener;
 
-    private Map<Long, Integer> map = new HashMap<>();
     private List<Long> ids = new ArrayList<>();
 
     public ArchiveAdapter(List<Todo> todos, ArchiveClickListener clickListener) {
@@ -64,12 +63,14 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ViewHold
                 if (isChecked) {
                     clickListener.selectedItem(1);
                     ids.add(id);
-                    map.put(id, position);
                     aux.setArchived(false);
                     aux.setDone(false);
                 } else {
                     clickListener.selectedItem(-1);
-                    int removePosition = map.get(id);
+                    int removePosition = 0;
+                    while (ids.get(removePosition) != id) {
+                        removePosition++;
+                    }
                     ids.remove(removePosition);
                     aux.setArchived(true);
                     aux.setDone(true);
