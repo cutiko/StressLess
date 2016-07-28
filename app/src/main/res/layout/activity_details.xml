@@ -11,6 +11,9 @@
     tools:context="cl.cutiko.stressless.views.details.DetailsActivity">
 
     <EditText
+        android:padding="8dp"
+        android:textColorHint="@color/colorGray"
+        android:hint="@string/description_hint"
         android:id="@+id/descriptionEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
