@@ -72,12 +72,13 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
+        View colorHolder;
         CheckBox checkBox;
         TextView name;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            colorHolder = itemView.findViewById(R.id.colorHolder);
             checkBox = (CheckBox) itemView.findViewById(R.id.todoCb);
             name = (TextView) itemView.findViewById(R.id.todoName);
         }
