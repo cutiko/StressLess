@@ -3,6 +3,7 @@ package cl.cutiko.stressless.views.details;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -52,8 +53,8 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onPause() {
+        super.onPause();
         saveDescription();
     }
 
