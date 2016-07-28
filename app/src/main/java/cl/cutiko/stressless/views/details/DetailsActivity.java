@@ -3,26 +3,19 @@ package cl.cutiko.stressless.views.details;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.thebluealliance.spectrum.SpectrumPalette;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cl.cutiko.stressless.R;
@@ -67,6 +60,14 @@ public class DetailsActivity extends AppCompatActivity {
         labels.add(0, prompt);
         adapter = new LabelsAdapter(this, R.layout.list_item_colored_label, labels);
         spinner.setAdapter(adapter);
+        long pendingLabel = pending.getCategory_id();
+        if (pendingLabel!= 0) {
+            int position = 1;
+            while (labels.get(position).getId() != pendingLabel) {
+                position++;
+            }
+            spinner.setSelection(position);
+        }
     }
 
     private void setDialog() {
@@ -133,14 +134,17 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        saveDescription();
+        saveData();
     }
 
-    private void saveDescription(){
+    private void saveData(){
         String description  = descriptionEt.getText().toString();
         if (description != null && !description.isEmpty() && !description.equals("") && description.trim().length() > 0) {
             pending.setDescription(description);
             pending.save();
         }
+        long id = spinner.getSelectedItemId();
+        pending.setCategory_id(id);
+        pending.save();
     }
 }
